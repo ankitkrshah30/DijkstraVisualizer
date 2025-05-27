@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?> <BorderPane fx:id="mainBorderPane" prefHeight="1000.0" prefWidth="1200.0"
+                                              xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+                                              fx:controller="com.dmsproject.dijkstravisualizer.DijkstraController"
+                                              style="-fx-background-color: linear-gradient(to bottom, #e0f7fa, #ffffff);"> <top>
+    <MenuBar BorderPane.alignment="CENTER" style="-fx-background-color: #00796b; -fx-text-fill: white;">
+        <menus>
+            <Menu text="File" style="-fx-text-fill: white;">
+                <items>
+                    <MenuItem text="New Graph" onAction="#handleNewGraph">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/new.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                    <MenuItem text="Load Graph" onAction="#handleLoadGraph">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/load.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                    <MenuItem text="Save Graph" onAction="#handleSaveGraph">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/save.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit" onAction="#handleExit">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/exit.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                </items>
+            </Menu>
+            <Menu text="Algorithm" style="-fx-text-fill: white;">
+                <items>
+                    <MenuItem text="Run Dijkstra" onAction="#handleRunAlgorithm">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/play.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                    <MenuItem text="Reset Algorithm" onAction="#handleResetAlgorithm">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/reset.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                </items>
+            </Menu>
+            <Menu text="Help" style="-fx-text-fill: white;">
+                <items>
+                    <MenuItem text="About" onAction="#handleAbout">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/info.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </MenuItem>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</top>
+
+    <left>
+        <VBox spacing="15" alignment="TOP_CENTER" prefWidth="280.0"
+              style="-fx-padding: 20; -fx-background-color: #e0f2f1; -fx-border-color: #00796b; -fx-border-width: 0 2 0 0;">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Label text="Graph Builder Controls" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Add Node" onAction="#handleAddNodeMode"
+                        style="-fx-background-color: #26a69a; -fx-text-fill: white; -fx-font-weight: bold;">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../../../icons/node.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button text="Add Edge" onAction="#handleAddEdgeMode"
+                        style="-fx-background-color: #26a69a; -fx-text-fill: white; -fx-font-weight: bold;">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../../../icons/edge.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Start Node:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+                <ComboBox fx:id="startNodeComboBox" prefWidth="130.0"
+                          style="-fx-background-color: #ffffff; -fx-border-color: #80cbc4; -fx-border-radius: 3; -fx-background-radius: 3;"/>
+            </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="End Node:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+                <ComboBox fx:id="endNodeComboBox" prefWidth="130.0"
+                          style="-fx-background-color: #ffffff; -fx-border-color: #80cbc4; -fx-border-radius: 3; -fx-background-radius: 3;"/>
+            </HBox>
+
+            <Button text="Find Shortest Path" onAction="#handleFindShortestPath"
+                    style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 8 15;">
+                <graphic>
+                    <ImageView fitHeight="16" fitWidth="16">
+                        <image>
+                            <Image url="@../../../icons/path.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Separator style="-fx-border-color: #004d40; -fx-border-width: 1 0 0 0;"/>
+
+            <Label text="Algorithm Controls" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
+            <HBox spacing="8" alignment="CENTER">
+                <Button fx:id="playButton" text="Play" onAction="#handlePlay"
+                        style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold;">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../../../icons/play.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="pauseButton" text="Pause" onAction="#handlePause"
+                        style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold;">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../../../icons/pause.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+            <HBox spacing="8" alignment="CENTER">
+                <Button fx:id="stepForwardButton" text="Step Forward" onAction="#handleStepForward"
+                        style="-fx-background-color: #00796b; -fx-text-fill: white;"/>
+                <Button fx:id="stepBackwardButton" text="Step Backward" onAction="#handleStepBackward"
+                        style="-fx-background-color: #00796b; -fx-text-fill: white;"/>
+            </HBox>
+
+            <Label text="Animation Speed:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+            <Slider fx:id="speedSlider" min="0.1" max="5.0" value="1.0" blockIncrement="0.1" prefWidth="200.0"/>
+
+            <Separator style="-fx-border-color: #004d40; -fx-border-width: 1 0 0 0;"/>
+            <Label text="Algorithm State" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
+            <Text fx:id="currentStateText" wrappingWidth="220.0" style="-fx-font-size: 14px; -fx-fill: #37474f;"/>
+
+            <Label text="Priority Queue:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+            <ListView fx:id="priorityQueueListView" prefHeight="180.0" prefWidth="250.0"
+                      style="-fx-background-color: #ffffff; -fx-border-color: #009688; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;"
+                      VBox.vgrow="ALWAYS"/>
+            <Label text="Distances:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+            <ListView fx:id="distancesListView" prefHeight="180.0" prefWidth="250.0"
+                      style="-fx-background-color: #ffffff; -fx-border-color: #009688; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;"
+                      VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+
+    <center>
+        <Pane fx:id="graphPane" style="-fx-background-color: #ffffff; -fx-border-color: #b2dfdb; -fx-border-width: 2; -fx-background-radius: 5; -fx-border-radius: 5;"/>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 12; -fx-background-color: #004d40;">
+            <Label text="Total Path Cost:" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            <Label fx:id="totalPathCostLabel" text="N/A" style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusLabel" text="Ready." style="-fx-text-fill: white; -fx-font-style: italic; -fx-font-size: 14px;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
