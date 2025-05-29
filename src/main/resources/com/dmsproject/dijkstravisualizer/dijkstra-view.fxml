@@ -92,106 +92,109 @@
 </top>
 
     <left>
-        <VBox spacing="15" alignment="TOP_CENTER" prefWidth="280.0"
-              style="-fx-padding: 20; -fx-background-color: #e0f2f1; -fx-border-color: #00796b; -fx-border-width: 0 2 0 0;">
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
-            <Label text="Graph Builder Controls" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
-            <HBox spacing="10" alignment="CENTER">
-                <Button text="Add Node" onAction="#handleAddNodeMode"
-                        style="-fx-background-color: #26a69a; -fx-text-fill: white; -fx-font-weight: bold;">
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox spacing="15" alignment="TOP_CENTER" prefWidth="280.0"
+                  style="-fx-padding: 20; -fx-background-color: #e0f2f1; -fx-border-color: #00796b; -fx-border-width: 0 2 0 0;">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Graph Builder Controls" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Add Node" onAction="#handleAddNodeMode"
+                            style="-fx-background-color: #26a69a; -fx-text-fill: white; -fx-font-weight: bold;">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/node.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button text="Add Edge" onAction="#handleAddEdgeMode"
+                            style="-fx-background-color: #26a69a; -fx-text-fill: white; -fx-font-weight: bold;">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/edge.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Start Node:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+                    <ComboBox fx:id="startNodeComboBox" prefWidth="130.0"
+                              style="-fx-background-color: #ffffff; -fx-border-color: #80cbc4; -fx-border-radius: 3; -fx-background-radius: 3;"/>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="End Node:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+                    <ComboBox fx:id="endNodeComboBox" prefWidth="130.0"
+                              style="-fx-background-color: #ffffff; -fx-border-color: #80cbc4; -fx-border-radius: 3; -fx-background-radius: 3;"/>
+                </HBox>
+
+                <Button text="Find Shortest Path" onAction="#handleFindShortestPath"
+                        style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 8 15;">
                     <graphic>
                         <ImageView fitHeight="16" fitWidth="16">
                             <image>
-                                <Image url="@../../../icons/node.png"/>
+                                <Image url="@../../../icons/path.png"/>
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button text="Add Edge" onAction="#handleAddEdgeMode"
-                        style="-fx-background-color: #26a69a; -fx-text-fill: white; -fx-font-weight: bold;">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16">
-                            <image>
-                                <Image url="@../../../icons/edge.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </HBox>
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Start Node:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
-                <ComboBox fx:id="startNodeComboBox" prefWidth="130.0"
-                          style="-fx-background-color: #ffffff; -fx-border-color: #80cbc4; -fx-border-radius: 3; -fx-background-radius: 3;"/>
-            </HBox>
+                <Separator style="-fx-border-color: #004d40; -fx-border-width: 1 0 0 0;"/>
 
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="End Node:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
-                <ComboBox fx:id="endNodeComboBox" prefWidth="130.0"
-                          style="-fx-background-color: #ffffff; -fx-border-color: #80cbc4; -fx-border-radius: 3; -fx-background-radius: 3;"/>
-            </HBox>
+                <Label text="Algorithm Controls" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
+                <HBox spacing="8" alignment="CENTER">
+                    <Button fx:id="playButton" text="Play" onAction="#handlePlay"
+                            style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold;">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/play.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="pauseButton" text="Pause" onAction="#handlePause"
+                            style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold;">
+                        <graphic>
+                            <ImageView fitHeight="16" fitWidth="16">
+                                <image>
+                                    <Image url="@../../../icons/pause.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+                <HBox spacing="8" alignment="CENTER">
+                    <Button fx:id="stepForwardButton" text="Step Forward" onAction="#handleStepForward"
+                            style="-fx-background-color: #00796b; -fx-text-fill: white;"/>
+                    <Button fx:id="stepBackwardButton" text="Step Backward" onAction="#handleStepBackward"
+                            style="-fx-background-color: #00796b; -fx-text-fill: white;"/>
+                </HBox>
 
-            <Button text="Find Shortest Path" onAction="#handleFindShortestPath"
-                    style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 8 15;">
-                <graphic>
-                    <ImageView fitHeight="16" fitWidth="16">
-                        <image>
-                            <Image url="@../../../icons/path.png"/>
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
+                <Label text="Animation Speed:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+                <Slider fx:id="speedSlider" min="0.1" max="5.0" value="1.0" blockIncrement="0.1" prefWidth="200.0"/>
 
-            <Separator style="-fx-border-color: #004d40; -fx-border-width: 1 0 0 0;"/>
+                <Separator style="-fx-border-color: #004d40; -fx-border-width: 1 0 0 0;"/>
+                <Label text="Algorithm State" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
+                <Text fx:id="currentStateText" wrappingWidth="220.0" style="-fx-font-size: 14px; -fx-fill: #37474f;"/>
 
-            <Label text="Algorithm Controls" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
-            <HBox spacing="8" alignment="CENTER">
-                <Button fx:id="playButton" text="Play" onAction="#handlePlay"
-                        style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold;">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16">
-                            <image>
-                                <Image url="@../../../icons/play.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button fx:id="pauseButton" text="Pause" onAction="#handlePause"
-                        style="-fx-background-color: #00796b; -fx-text-fill: white; -fx-font-weight: bold;">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16">
-                            <image>
-                                <Image url="@../../../icons/pause.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </HBox>
-            <HBox spacing="8" alignment="CENTER">
-                <Button fx:id="stepForwardButton" text="Step Forward" onAction="#handleStepForward"
-                        style="-fx-background-color: #00796b; -fx-text-fill: white;"/>
-                <Button fx:id="stepBackwardButton" text="Step Backward" onAction="#handleStepBackward"
-                        style="-fx-background-color: #00796b; -fx-text-fill: white;"/>
-            </HBox>
-
-            <Label text="Animation Speed:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
-            <Slider fx:id="speedSlider" min="0.1" max="5.0" value="1.0" blockIncrement="0.1" prefWidth="200.0"/>
-
-            <Separator style="-fx-border-color: #004d40; -fx-border-width: 1 0 0 0;"/>
-            <Label text="Algorithm State" style="-fx-font-weight: bold; -fx-font-size: 17px; -fx-text-fill: #004d40;"/>
-            <Text fx:id="currentStateText" wrappingWidth="220.0" style="-fx-font-size: 14px; -fx-fill: #37474f;"/>
-
-            <Label text="Priority Queue:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
-            <ListView fx:id="priorityQueueListView" prefHeight="180.0" prefWidth="250.0"
-                      style="-fx-background-color: #ffffff; -fx-border-color: #009688; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;"
-                      VBox.vgrow="ALWAYS"/>
-            <Label text="Distances:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
-            <ListView fx:id="distancesListView" prefHeight="180.0" prefWidth="250.0"
-                      style="-fx-background-color: #ffffff; -fx-border-color: #009688; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;"
-                      VBox.vgrow="ALWAYS"/>
-        </VBox>
+                <Label text="Priority Queue:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+                <ListView fx:id="priorityQueueListView"
+                          style="-fx-background-color: #ffffff; -fx-border-color: #009688; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;"
+                          minHeight="130.0" prefHeight="150.0" maxHeight="130.0"/>
+                
+                <Label text="Distances:" style="-fx-font-size: 14px; -fx-text-fill: #004d40;"/>
+                <ListView fx:id="distancesListView"
+                          style="-fx-background-color: #ffffff; -fx-border-color: #009688; -fx-border-width: 1; -fx-background-radius: 5; -fx-border-radius: 5;"
+                          minHeight="130.0" prefHeight="300.0" maxHeight="130.0"/>
+            </VBox>
+        </ScrollPane>
     </left>
 
     <center>
